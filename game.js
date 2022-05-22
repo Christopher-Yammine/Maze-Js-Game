@@ -37,7 +37,26 @@ function lostBoundary(){
     for (var i=0;i<boundaries.length;i++){
         boundaries[i].classList.add("youlose");
         win();
+        }   
     }
-    
-}
+
+function win(){
+        const msg=document.getElementsByClassName("boundary example")[0];
+        const status = document.getElementById("status");
+        const boundaries=document.getElementsByClassName("boundary");
+        if (lost===false){
+            score=+5;
+            status.innerHTML="Congrats! You Win!";
+            msg.innerHTML=score;
+            
+        }else {
+            score=-10;
+            status.innerHTML="You lost :( Try again."
+            msg.innerHTML=score;
+        }
+        for (var i=0;i<boundaries.length;i++){
+            boundaries[i].removeEventListener("mouseenter",lostBoundary);
+        }
+        end.removeEventListener("mouseenter",win)
+    }
 }
