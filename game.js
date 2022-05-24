@@ -35,12 +35,14 @@ function reset (){
 
 function lostBoundary(){
     const boundaries=document.getElementsByClassName("boundary");
+    const last =document.getElementById('last');
     lost = true;
     for (var i=0;i<boundaries.length;i++){
         boundaries[i].classList.add("youlose");
         win();
         }   
     resetTimer();
+    last.innerText="00:00:00";
     }
 
 function win(){
@@ -75,6 +77,7 @@ function win(){
     }
     function cheating(){
     const boundaries=document.getElementsByClassName("boundary");
+    const last =document.getElementById('last');
     lost = true;
     cheated=true;
     
@@ -83,6 +86,7 @@ function win(){
         win();
         }   
         resetTimer();
+        last.innerText="00:00:00";
     }
     const live = document.getElementById('live');
     const last =document.getElementById('last');
