@@ -1,5 +1,7 @@
+
 window.onload=function(){
 initialize();
+
 }
 
 function initialize(){
@@ -15,6 +17,7 @@ function reset (){
     const status = document.getElementById("status");
     lost=false;
     cheated=false;
+    
     status.innerHTML='Begin by moving your mouse over the "S".'
     for (var i=0;i<boundaries.length;i++){
         boundaries[i].classList.remove("youlose");
@@ -24,7 +27,9 @@ function reset (){
     for (var i=0;i<boundaries.length;i++){
         boundaries[i].addEventListener("mouseenter",lostBoundary);
     }
+    end.addEventListener('click',initiate);
     game.addEventListener("mouseleave",cheating);
+    resetTimer();
     startTimer();
 }
 
@@ -35,6 +40,7 @@ function lostBoundary(){
         boundaries[i].classList.add("youlose");
         win();
         }   
+    stopTimer();
     }
 
 function win(){
@@ -61,18 +67,21 @@ function win(){
         for (var i=0;i<boundaries.length;i++){
             boundaries[i].removeEventListener("mouseenter",lostBoundary);
         }
-        end.removeEventListener("mouseenter",win)
-        game.removeEventListener("mouseleave",cheating)
+        end.removeEventListener("mouseenter",win);
+        game.removeEventListener("mouseleave",cheating);
+        stopTimer();
+
     }
     function cheating(){
     const boundaries=document.getElementsByClassName("boundary");
     lost = true;
     cheated=true;
-    stopTimer();
+    
     for (var i=0;i<boundaries.length;i++){
         boundaries[i].classList.add("youlose");
         win();
         }   
+        resetTimer();
     }
     const live = document.getElementById('live');
     const last =document.getElementById('last');
@@ -134,6 +143,26 @@ function win(){
         last.innerText=min + ':' + sec + ':' +  ms;
         compareScore();
         }
+    function initiate() {
+            var last=document.getElementById('last');
+            var best=document.getElementById('best');
+            
+            last.innerText=min + ':' + sec + ':' +  ms;
+            best.innerText=min + ':' + sec + ':' +  ms;
+           
+            var lastScore=last.innerText.split(':');
+            var lastS=[];
+            for (var j=0;j<lastScore.length;j++){
+              lastS[j]=parseInt(lastScore[j]);
+            } 
+            var bestScore=best.innerText.split(':');
+            var bestS=[]
+            for (var i=0;i<bestScore.length;i++){
+              bestS[i]=parseInt(bestScore[i]);
+            }
+            console.log(lastS);
+            console.log(bestS);
+          }
         
     function compareScore (){
             var last=document.getElementById('last');
@@ -149,10 +178,19 @@ function win(){
               bestS[j]=parseInt(bestScore[j]);
             }
             for (var i=0;i<bestS.length;i++){
-              if (lastS[i]>bestS[i]){
+              if (lastS[i]<bestS[i]){
                 best.innerText=min + ':' + sec + ':' +  ms;
               }
             }
           }
+    function resetTimer() {
+        const live = document.getElementById('live');
+        live.innerHTML = '00:00:00';
+        ms = 0;
+        min = 0;
+        sec = 0;
+        stoptime = true;
+}
+    
     
     
