@@ -124,7 +124,7 @@ function win(){
         setTimeout("timerCycle()", 10);
         }
     }
-      function stopTimer() {
+    function stopTimer() {
   
  
         if (stoptime == false) {
@@ -132,9 +132,27 @@ function win(){
         }
         const last =document.getElementById('last');  
         last.innerText=min + ':' + sec + ':' +  ms;
-        
-
+        compareScore();
         }
-    
+        
+    function compareScore (){
+            var last=document.getElementById('last');
+            var best=document.getElementById('best');
+            var lastScore=last.innerText.split(':');
+            var lastS=[]
+            for (var i=0;i<lastScore.length;i++){
+              lastS[i]=parseInt(lastScore[i]);
+            }
+            var bestScore=best.innerText.split(':');
+            var bestS=[];
+            for (var j=0;j<bestScore.length;j++){
+              bestS[j]=parseInt(bestScore[j]);
+            }
+            for (var i=0;i<bestS.length;i++){
+              if (lastS[i]>bestS[i]){
+                best.innerText=min + ':' + sec + ':' +  ms;
+              }
+            }
+          }
     
     
