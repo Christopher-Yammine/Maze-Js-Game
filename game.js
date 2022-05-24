@@ -68,6 +68,7 @@ function win(){
     const boundaries=document.getElementsByClassName("boundary");
     lost = true;
     cheated=true;
+    stopTimer();
     for (var i=0;i<boundaries.length;i++){
         boundaries[i].classList.add("youlose");
         win();
@@ -87,13 +88,11 @@ function win(){
               stoptime = false;
               timerCycle();
           }
-      }
+        }
     function timerCycle() {
         const live = document.getElementById('live');
-        const last =document.getElementById('last');
-        const best= document.getElementById('best');
         if (stoptime == false) {
-        ms=parseInt(ms);
+        ms  = parseInt(ms);
         sec = parseInt(sec);
         min = parseInt(min);
         ms = ms + 1;
@@ -123,7 +122,19 @@ function win(){
         live.innerHTML = min + ':' + sec + ':' +  ms
     
         setTimeout("timerCycle()", 10);
-      }
+        }
     }
+      function stopTimer() {
+  
+ 
+        if (stoptime == false) {
+          stoptime = true;
+        }
+        const last =document.getElementById('last');  
+        last.innerText=min + ':' + sec + ':' +  ms;
+        
+
+        }
+    
     
     
