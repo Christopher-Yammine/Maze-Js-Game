@@ -4,7 +4,7 @@ initialize();
 
 function initialize(){
     const start = document.getElementById('start');
-start.addEventListener('click',function(event){
+    start.addEventListener('click',function(event){
     reset();
 });
 }
@@ -43,7 +43,7 @@ function win(){
         if (lost===false && cheated===false){
             score=+5;
             status.innerHTML="Congrats! You Win!";
-            msg.innerHTML=score;
+            msg.innerText=score;
             
         }
         else if (lost===true && cheated===true){
@@ -72,3 +72,14 @@ function win(){
         win();
         }   
     }
+    const live = document.getElementById('live');
+    const last =document.getElementById('last');
+    const best= document.getElementById('best');
+
+    var ms = 0;
+    var min = 0;
+    var sec = 0;
+    var stoptime = true;
+
+    
+    
