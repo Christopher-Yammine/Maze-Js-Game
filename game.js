@@ -40,7 +40,7 @@ function lostBoundary(){
         boundaries[i].classList.add("youlose");
         win();
         }   
-    stopTimer();
+    resetTimer();
     }
 
 function win(){
@@ -70,6 +70,7 @@ function win(){
         end.removeEventListener("mouseenter",win);
         game.removeEventListener("mouseleave",cheating);
         stopTimer();
+        compareScore();
 
     }
     function cheating(){
@@ -141,7 +142,7 @@ function win(){
         }
         const last =document.getElementById('last');  
         last.innerText=min + ':' + sec + ':' +  ms;
-        compareScore();
+        
         }
     function initiate() {
             var last=document.getElementById('last');
@@ -177,7 +178,7 @@ function win(){
             for (var j=0;j<bestScore.length;j++){
               bestS[j]=parseInt(bestScore[j]);
             }
-            for (var i=0;i<bestS.length;i++){
+            for (var i=0;i<bestS.length;++i){
               if (lastS[i]<bestS[i]){
                 best.innerText=min + ':' + sec + ':' +  ms;
               }
